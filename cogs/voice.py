@@ -107,7 +107,7 @@ class Voice(commands.Cog):
                             c.execute ("UPDATE guild SET guildID = ?, ownerID = ?, voiceChannelID = ?, voiceCategoryID = ? WHERE guildID = ?",(guildID, id, channel.id, new_cat.id, guildID))
                         await ctx.channel.send("*Done*", delete_after=DELETE_AFTER)
                     except:
-                        await ctx.channel.send("You didn't enter the names properly. Please setup again.", delete_after=DELETE_AFTER)
+                        await ctx.channel.send("Incorrect naming, please setup again.", delete_after=DELETE_AFTER)
         conn.commit()
         conn.close()
     

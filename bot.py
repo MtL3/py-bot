@@ -40,6 +40,7 @@ class DiscordBot(commands.Bot):
         print('ID: ' + str(self.user.id))
         print('------')
 
+    # Check if message is from bot
     async def on_message(self, message):
         if message.author.bot:
             return

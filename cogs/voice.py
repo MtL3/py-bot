@@ -75,7 +75,7 @@ class Voice(commands.Cog):
         conn.commit()
         conn.close()
 
-    @commands.command()
+    @commands.command(hidden=True)
     async def setup(self, ctx):
         conn = sqlite3.connect('voice.db')
         c = conn.cursor()
@@ -111,7 +111,7 @@ class Voice(commands.Cog):
         conn.commit()
         conn.close()
     
-    @commands.command()
+    @commands.command(hidden=True)
     async def setlimit(self, ctx, num):
         conn = sqlite3.connect('voice.db')
         c = conn.cursor()
@@ -126,11 +126,7 @@ class Voice(commands.Cog):
         conn.commit()
         conn.close()
 
-    @commands.group()
-    async def voice(self, ctx):
-        pass
-
-    @voice.command()
+    @commands.command()
     async def lock(self, ctx):
         conn = sqlite3.connect('voice.db')
         c = conn.cursor()
@@ -148,7 +144,7 @@ class Voice(commands.Cog):
         conn.commit()
         conn.close()
     
-    @voice.command()
+    @commands.command()
     async def unlock(self, ctx):
         conn = sqlite3.connect('voice.db')
         c = conn.cursor()
@@ -166,7 +162,7 @@ class Voice(commands.Cog):
         conn.commit()
         conn.close()
     
-    @voice.command(aliases=["allow"])
+    @commands.command(aliases=["allow"])
     async def permit(self, ctx, member : discord.Member):
         conn = sqlite3.connect('voice.db')
         c = conn.cursor()
@@ -183,7 +179,7 @@ class Voice(commands.Cog):
         conn.commit()
         conn.close()
     
-    @voice.command(aliases=["deny"])
+    @commands.command(aliases=["deny"])
     async def reject(self, ctx, member : discord.Member):
         conn = sqlite3.connect('voice.db')
         c = conn.cursor()
@@ -207,7 +203,7 @@ class Voice(commands.Cog):
         conn.commit()
         conn.close()
     
-    @voice.command()
+    @commands.command()
     async def limit(self, ctx, limit):
         conn = sqlite3.connect('voice.db')
         c = conn.cursor()
@@ -230,7 +226,7 @@ class Voice(commands.Cog):
         conn.commit()
         conn.close()
     
-    @voice.command()
+    @commands.command()
     async def name(self, ctx,*, name):
         conn = sqlite3.connect('voice.db')
         c = conn.cursor()
@@ -253,7 +249,7 @@ class Voice(commands.Cog):
         conn.commit()
         conn.close()
     
-    @voice.command()
+    @commands.command()
     async def claim(self, ctx):
         x = False
         conn = sqlite3.connect('voice.db')

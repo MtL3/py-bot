@@ -14,6 +14,7 @@ class Voice(commands.Cog):
     
     @commands.Cog.listener()
     async def on_voice_state_update(self, member, before, after):
+        # Main listener for voice state updates
         conn = sqlite3.connect('voice.db')
         c = conn.cursor()
         guildID = member.guild.id
@@ -38,8 +39,10 @@ class Voice(commands.Cog):
                     setting=c.fetchone()
                     c.execute("SELECT channelLimit FROM guildSettings WHERE guildID = ?", (guildID,))
                     guildSetting=c.fetchone()
+                    # Check for custom name
                     if setting is None:
                         name = f"{member.name}'s channel"
+                        # Check for guild admin limit
                         if guildSetting is None:
                             limit = 0
                         else:
@@ -77,6 +80,7 @@ class Voice(commands.Cog):
 
     @commands.command(hidden=True)
     async def setup(self, ctx):
+        # Admin command to choose category and voice channel name
         conn = sqlite3.connect('voice.db')
         c = conn.cursor()
         guildID = ctx.guild.id
@@ -113,6 +117,7 @@ class Voice(commands.Cog):
     
     @commands.command(hidden=True)
     async def setlimit(self, ctx, num):
+        # Admin command to change channel limits
         conn = sqlite3.connect('voice.db')
         c = conn.cursor()
         if ctx.author.id == ctx.guild.owner.id or ctx.author.id == 310077396873117696:
@@ -128,6 +133,7 @@ class Voice(commands.Cog):
 
     @commands.command()
     async def lock(self, ctx):
+        # Locks the voice channel
         conn = sqlite3.connect('voice.db')
         c = conn.cursor()
         id = ctx.author.id
@@ -146,6 +152,7 @@ class Voice(commands.Cog):
     
     @commands.command()
     async def unlock(self, ctx):
+        # Unlocks the voice channel
         conn = sqlite3.connect('voice.db')
         c = conn.cursor()
         id = ctx.author.id
@@ -205,6 +212,7 @@ class Voice(commands.Cog):
     
     @commands.command()
     async def limit(self, ctx, limit):
+        # User command to change channel limits
         conn = sqlite3.connect('voice.db')
         c = conn.cursor()
         id = ctx.author.id

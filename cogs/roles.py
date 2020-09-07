@@ -32,6 +32,7 @@ class Roles(commands.Cog):
     async def contribute(self, ctx):
         """Allows you to opt-in to being a contributer for the bot"""
         await self.toggle_role(ctx, CONTRIBUTER_ROLE)
+        await ctx.message.delete(delay=5)
 
 def setup(bot):
     bot.add_cog(Roles(bot))
